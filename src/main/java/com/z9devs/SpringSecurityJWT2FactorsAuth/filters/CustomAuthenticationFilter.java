@@ -1,4 +1,4 @@
-package com.z9devs.SpringSecurityJWTExample.filters;
+package com.z9devs.SpringSecurityJWT2FactorsAuth.filters;
 
 import java.io.IOException;
 import java.util.Collection;

@@ -1,9 +1,9 @@
-package com.z9devs.SpringSecurityJWTExample.services;
+package com.z9devs.SpringSecurityJWT2FactorsAuth.services;
 
 import java.util.List;
 
-import com.z9devs.SpringSecurityJWTExample.entities.Role;
-import com.z9devs.SpringSecurityJWTExample.entities.User;
+import com.z9devs.SpringSecurityJWT2FactorsAuth.entities.Role;
+import com.z9devs.SpringSecurityJWT2FactorsAuth.entities.User;
 
 public interface UserService {
 	User saveUser(User user);

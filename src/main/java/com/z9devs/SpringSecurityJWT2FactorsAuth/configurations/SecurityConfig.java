@@ -1,4 +1,4 @@
-package com.z9devs.SpringSecurityJWTExample.security;
+package com.z9devs.SpringSecurityJWT2FactorsAuth.configurations;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,8 +14,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.z9devs.SpringSecurityJWTExample.filters.CustomAuthenticationFilter;
-import com.z9devs.SpringSecurityJWTExample.filters.CustomAuthorizationFilter;
+import com.z9devs.SpringSecurityJWT2FactorsAuth.filters.CustomAuthenticationFilter;
+import com.z9devs.SpringSecurityJWT2FactorsAuth.filters.CustomAuthorizationFilter;
 
 import lombok.RequiredArgsConstructor;
 

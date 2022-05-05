@@ -1,4 +1,4 @@
-package com.z9devs.SpringSecurityJWTExample.entities;
+package com.z9devs.SpringSecurityJWT2FactorsAuth.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

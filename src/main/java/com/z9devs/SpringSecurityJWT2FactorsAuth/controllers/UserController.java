@@ -1,4 +1,4 @@
-package com.z9devs.SpringSecurityJWTExample.controllers;
+package com.z9devs.SpringSecurityJWT2FactorsAuth.controllers;
 
 import java.io.IOException;
 import java.net.URI;
@@ -36,9 +36,9 @@ import com.auth0.jwt.interfaces.JWTVerifier;
 import com.fasterxml.jackson.core.exc.StreamWriteException;
 import com.fasterxml.jackson.databind.DatabindException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.z9devs.SpringSecurityJWTExample.entities.Role;
-import com.z9devs.SpringSecurityJWTExample.entities.User;
-import com.z9devs.SpringSecurityJWTExample.services.UserService;
+import com.z9devs.SpringSecurityJWT2FactorsAuth.entities.Role;
+import com.z9devs.SpringSecurityJWT2FactorsAuth.entities.User;
+import com.z9devs.SpringSecurityJWT2FactorsAuth.services.UserService;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;

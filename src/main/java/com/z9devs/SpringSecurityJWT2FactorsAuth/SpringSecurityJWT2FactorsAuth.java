@@ -1,4 +1,4 @@
-package com.z9devs.SpringSecurityJWTExample;
+package com.z9devs.SpringSecurityJWT2FactorsAuth;
 
 import java.util.ArrayList;
 
@@ -9,15 +9,15 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import com.z9devs.SpringSecurityJWTExample.entities.Role;
-import com.z9devs.SpringSecurityJWTExample.entities.User;
-import com.z9devs.SpringSecurityJWTExample.services.UserService;
+import com.z9devs.SpringSecurityJWT2FactorsAuth.entities.Role;
+import com.z9devs.SpringSecurityJWT2FactorsAuth.entities.User;
+import com.z9devs.SpringSecurityJWT2FactorsAuth.services.UserService;
 // https://www.youtube.com/watch?v=VVn9OG9nfH0
 @SpringBootApplication
-public class SpringSecurityJwtExampleApplication {
+public class SpringSecurityJWT2FactorsAuth {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringSecurityJwtExampleApplication.class, args);
+		SpringApplication.run(SpringSecurityJWT2FactorsAuth.class, args);
 	}
 	
 	@Bean

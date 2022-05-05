@@ -1,4 +1,4 @@
-package com.z9devs.SpringSecurityJWTExample.servicesImpl;
+package com.z9devs.SpringSecurityJWT2FactorsAuth.servicesImpl;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -13,11 +13,11 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.z9devs.SpringSecurityJWTExample.entities.Role;
-import com.z9devs.SpringSecurityJWTExample.entities.User;
-import com.z9devs.SpringSecurityJWTExample.repositories.RoleRepo;
-import com.z9devs.SpringSecurityJWTExample.repositories.UserRepo;
-import com.z9devs.SpringSecurityJWTExample.services.UserService;
+import com.z9devs.SpringSecurityJWT2FactorsAuth.entities.Role;
+import com.z9devs.SpringSecurityJWT2FactorsAuth.entities.User;
+import com.z9devs.SpringSecurityJWT2FactorsAuth.repositories.RoleRepo;
+import com.z9devs.SpringSecurityJWT2FactorsAuth.repositories.UserRepo;
+import com.z9devs.SpringSecurityJWT2FactorsAuth.services.UserService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

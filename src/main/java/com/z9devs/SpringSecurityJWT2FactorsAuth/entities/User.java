@@ -1,4 +1,4 @@
-package com.z9devs.SpringSecurityJWTExample.entities;
+package com.z9devs.SpringSecurityJWT2FactorsAuth.entities;
 
 import java.util.ArrayList;
 import java.util.Collection;
