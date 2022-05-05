@@ -25,6 +25,7 @@ public class SpringSecurityJWT2FactorsAuth {
 		return new BCryptPasswordEncoder();
 	}
 	
+	// Prova modifica
 	@Bean
 	CommandLineRunner run(UserService userService) {
 		return args -> {
