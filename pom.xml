@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.z9devs</groupId>
-	<artifactId>SpringSecurityJWTExample</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>SpringSecurityJWTExample</name>
-	<description>SpringSecurityJWT</description>
+	<artifactId>spring-security-jwt-2-factors-auth</artifactId>
+	<version>1</version>
+	<name>spring-security-jwt-2-factors-auth</name>
+	<description>spring-security-jwt-2-factors-auth</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
