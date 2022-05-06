@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -36,18 +37,23 @@ import com.auth0.jwt.interfaces.JWTVerifier;
 import com.fasterxml.jackson.core.exc.StreamWriteException;
 import com.fasterxml.jackson.databind.DatabindException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.z9devs.SpringSecurityJWT2FactorsAuth.entities.RegistrationRequest;
 import com.z9devs.SpringSecurityJWT2FactorsAuth.entities.Role;
 import com.z9devs.SpringSecurityJWT2FactorsAuth.entities.User;
+import com.z9devs.SpringSecurityJWT2FactorsAuth.services.RegistrationService;
 import com.z9devs.SpringSecurityJWT2FactorsAuth.services.UserService;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequiredArgsConstructor
+@AllArgsConstructor
 @RequestMapping("/api")
 public class UserController {
 	private final UserService userService;
+	
+	private final RegistrationService registrationService;
 	
 	@GetMapping("/users")
 	public ResponseEntity<List<User>> getUsers() {
@@ -58,6 +64,11 @@ public class UserController {
 	public ResponseEntity<User> saveUser(@RequestBody User user) {
 		URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("/api/user/save").toUriString());
 		return ResponseEntity.created(uri).body(userService.saveUser(user));
+	}
+	
+	@GetMapping("/admin/testpage")
+	public ResponseEntity<String> pageVisibleToAdmin() {
+		return ResponseEntity.ok().body("Pagina visibile solo dagli admin");
 	}
 	
 	@PostMapping("/role/save")
@@ -125,6 +136,18 @@ public class UserController {
 		} else {
 			throw new RuntimeException("Refresh token is missing");
 		}
+	}
+	
+	// Qui si manda richiesta di registrazione
+	@PostMapping("/registration")
+	public String register(@RequestBody RegistrationRequest request) {
+		return registrationService.register(request);
+	}
+	
+	// Qui si manda rimanda tramite il link inserito nella mail di conferma
+	@GetMapping("/registration/confirm")
+	public String register(@RequestParam("token") String token) {
+		return registrationService.confirmToken(token);
 	}
 }
 

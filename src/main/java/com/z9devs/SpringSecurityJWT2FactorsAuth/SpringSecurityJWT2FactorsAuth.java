@@ -34,6 +34,7 @@ public class SpringSecurityJWT2FactorsAuth {
 			userService.saveRole(new Role(null, "ROLE_ADMIN"));
 			userService.saveRole(new Role(null, "ROLE_SUPER_ADMIN"));
 			
+			/*
 			userService.saveUser(new User(null, "John Travolta", "john", "1234", new ArrayList<>()));
 			userService.saveUser(new User(null, "Will Smith", "will", "1234", new ArrayList<>()));
 			userService.saveUser(new User(null, "Jim Carry", "jim", "1234", new ArrayList<>()));
@@ -44,6 +45,7 @@ public class SpringSecurityJWT2FactorsAuth {
 			userService.addRoleToUser("jim", "ROLE_SUPER_ADMIN");
 			userService.addRoleToUser("mario", "ROLE_SUPER_ADMIN");
 			userService.addRoleToUser("mario", "ROLE_USER");
+			 */
 		};
 	}
 }

@@ -25,6 +25,7 @@ import lombok.RequiredArgsConstructor;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	private final UserDetailsService userDetailsService;
 	private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final CustomAuthenticationProvider authProvider;
 	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -32,12 +33,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		// farlo con JPA, attraverso un service
 		auth.userDetailsService(userDetailsService)
 		// Diciamo poi di cryptare la pw con BCrypt
-			.passwordEncoder(bCryptPasswordEncoder);
+		.passwordEncoder(bCryptPasswordEncoder)
+		//.and()
+		// Setto authentication provider
+		//.authenticationProvider(authProvider)
+		;
+		
 	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		CustomAuthenticationFilter customAuthenticationFilter = new CustomAuthenticationFilter(authenticationManagerBean());
+		CustomAuthenticationFilter customAuthenticationFilter = new CustomAuthenticationFilter(authProvider);
 		customAuthenticationFilter.setFilterProcessesUrl("/api/login");
 		
 		// Disabilito cross site request forgery
@@ -47,11 +53,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		// Autorizzo chiunque ad accedere all'applicazione fino a questo punto
 		.and() 
-		.authorizeRequests().antMatchers("/api/login", "/api/token/refresh/**").permitAll()
+		.authorizeRequests().antMatchers("/api/login", "/api/token/refresh/**", "/api/registration/**").permitAll()
 		.and()
 		.authorizeRequests().antMatchers(HttpMethod.GET, "/api/user/**").hasAuthority("ROLE_USER")
 		.and()
 		.authorizeRequests().antMatchers(HttpMethod.POST, "/api/user/save/**").hasAnyAuthority("ROLE_ADMIN")
+		.and()
+		.authorizeRequests().antMatchers(HttpMethod.GET, "/api/admin/**").hasAnyAuthority("ROLE_ADMIN")
 		.and()
 		.authorizeRequests().anyRequest().authenticated()
 		// .authorizeRequests().anyRequest().permitAll()
@@ -66,6 +74,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
 
 	}
+	
+	
 	
 	@Bean
 	@Override

@@ -20,18 +20,20 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.stereotype.Component;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.z9devs.SpringSecurityJWT2FactorsAuth.configurations.CustomAuthenticationProvider;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
-	private final AuthenticationManager authenticataionManager;
+	private final CustomAuthenticationProvider authenticataionManager;
 	
-	public CustomAuthenticationFilter(AuthenticationManager authenticataionManager) {
+	public CustomAuthenticationFilter(CustomAuthenticationProvider authenticataionManager) {
 		this.authenticataionManager = authenticataionManager;
 	}
 	
@@ -39,6 +41,7 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
 	@Override
 	public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
 			throws AuthenticationException {
+		
 		// Recupero dai parametri utente e pw, quindi devo
 		// settare le credenziali nel body della request
 		// come x-www-form-urlencoded
@@ -48,6 +51,7 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
 		log.info("Password is: {}", password);
 		UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(username, password);
 		// Faccio fare autenticazione all'authentication manager
+		System.out.println("Prima di passare a authenticationManager");
 		return authenticataionManager.authenticate(authenticationToken);
 	}
 
@@ -66,7 +70,7 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
 				// Identificativo user
 				.withSubject(user.getUsername())
 				// Data scadenza del token
-				.withExpiresAt(new Date(System.currentTimeMillis() + 10 *60 * 1000 ))
+				.withExpiresAt(new Date(System.currentTimeMillis() + 1 *60 * 1000 ))
 				// Creatore del token
 				.withIssuer(request.getRequestURL().toString())
 				// Ruoli per l'user
@@ -100,7 +104,12 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
 	@Override
 	protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response,
 			AuthenticationException failed) throws IOException, ServletException {
-		// TODO Auto-generated method stub
-		super.unsuccessfulAuthentication(request, response, failed);
+		response.setContentType(MediaType.APPLICATION_JSON_VALUE);
+		System.out.println("Sono dentro a metodo autenticazione fallita");
+		Map<String,String> res = new HashMap<>();
+		res.put("Error", failed.getMessage());
+		
+		response.setContentType(MediaType.APPLICATION_JSON_VALUE);
+		new ObjectMapper().writeValue(response.getOutputStream(), res);
 	}
 }
